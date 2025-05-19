@@ -1,6 +1,7 @@
 import swagger from '../../core/swagger.js';
 import ExampleController from '../../modules/example/controller.js';
 import ImageController from '../../modules/images/controller.js';
+import PaymentController from '../../modules/payment/controller.js';
 import AuthenticationController from '../../modules/auth/controller.js'
 import upload from "./../../core/services.js"
 // import SubscriptionController from '../../modules/payment/controller.js';
@@ -27,7 +28,13 @@ class Route {
     this.app.put('/image/:id', ImageController.Update); 
     this.app.delete('/image/:id', ImageController.Delete); 
 
-    // this.app.delete('/paddle/webhook', PaddleWebhook.Handle); 
+    //  this.app.post('/image', ImageController.Insert);
+    this.app.get('/payment', PaymentController.Gets); 
+    // this.app.get('/image/:id', ImageController.Get);
+    // this.app.put('/image/:id', ImageController.Update); 
+    // this.app.delete('/image/:id', ImageController.Delete); 
+
+    this.app.post('/paddle/webhook', PaymentController.Getwebhook); 
     // this.app.get('/subscription', SubscriptionController.getSubscription);
     // this.app.post('/paddle/webhook', PaddleWebhookController.Handle);
 

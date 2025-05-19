@@ -1,24 +1,36 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../MyDbContext.js'; 
+import sequelize from '../../MyDbContext.js';
 import { v4 as uuidv4 } from 'uuid';
 
-const Example  = sequelize.define(
-  'Example',
+const Payment = sequelize.define(
+  'Payment',
   {
     id: {
       type: DataTypes.UUID,
       defaultValue: uuidv4,
       primaryKey: true,
     },
-    amount: {
+    user_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+    customer_id: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    currency: {
+    subscription_id: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    transactionId: {
+    first_billed_at: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    next_billed_at: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+     billing_interval: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -28,10 +40,10 @@ const Example  = sequelize.define(
     },
   },
   {
-    tableName: 'Examples',
-    timestamps: true,     
-    paranoid: true,      
+    tableName: 'Payments',
+    timestamps: true,
+    paranoid: true,
   }
 );
 
-export default Example;
+export default Payment;

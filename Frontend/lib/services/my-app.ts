@@ -8,6 +8,7 @@ export const MyApp = {
 export interface UserBoxProps {
   userId?: string;
   username?: string;
+  email?: string;
   role?: string;
 }
 

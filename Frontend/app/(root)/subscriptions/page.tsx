@@ -13,22 +13,31 @@ import { AppKey } from "@/lib/services/key";
 
 const Credits = () => {
   const [paddle, setPaddle] = useState<Paddle>();
-    const [user, setUser] = useState<UserBoxProps>({ userId: "", username: "" }); // Initialize user with fallback values
+  const [user, setUser] = useState<UserBoxProps>({ userId: "", username: "" }); // Initialize user with fallback values
+  const [subscription, setSubscription] = useState<{ subscription_id: string } | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const userId = localStorage.getItem(AppKey.userId) || "";  
-        const username = localStorage.getItem(AppKey.username) || ""; 
-        if (userId && username) {
-          setUser({ userId, username });
-        } else {
-          // router.push("/sign-in");
-          router.replace("/sign-in");
-        }
+    const userId = localStorage.getItem(AppKey.userId) || "";
+    const username = localStorage.getItem(AppKey.username) || "";
+    // const storedSubscription = localStorage.getItem(AppKey.subscription);
+
+    if (userId && username) {
+      setUser({ userId, username });
+      // if (storedSubscription) {
+      //   try {
+      //     setSubscription(JSON.parse(storedSubscription));
+      //   } catch (err) {
+      //     console.error("Failed to parse subscription:", err);
+      //   }
+      // }
+    } else {
+      router.replace("/sign-in");
+    }
 
     initializePaddle({
       environment: 'sandbox',
-      token: MyApp.tokenPayment, // now guaranteed to be a string
+      token: MyApp.tokenPayment,
     })
       .then((paddleInstance) => setPaddle(paddleInstance))
       .catch((e) => {
@@ -49,9 +58,13 @@ const Credits = () => {
           quantity: 1,
         },
       ],
+      customData: {
+        user_id: user.userId,
+        username: user.username
+      },
       settings: {
         displayMode: 'overlay',
-        theme: 'dark',
+        theme: 'light',
         successUrl: `${window.location.origin}/subscriptions/success`,
       },
     });
@@ -68,7 +81,7 @@ const Credits = () => {
         <ul className="subscription-list">
 
           {/* Free package */}
-          {plans.slice(0,1).map((plan) => (
+          {plans.slice(0, 1).map((plan) => (
             <li key={plan.name} className="free-subscription-form mt-10 mb-10">
 
               <div className="flex-center flex-col gap-3">
@@ -115,7 +128,7 @@ const Credits = () => {
 
           {/* Premium Subscription package */}
           {/* Monthly Package */}
-          {plans.slice(1,2).map((plan) => (
+          {plans.slice(1, 2).map((plan) => (
             <li key={plan.name} className="premium-monthly-subscription-form mt-5 mb-5">
 
               <div className="flex-center flex-col gap-3 mt-5">
@@ -193,6 +206,27 @@ const Credits = () => {
 
               {/* Button to handle subscription */}
               {plan._id !== 1 && (
+                subscription?.subscription_id ? (
+                  <button
+                    type="button"
+                    className="subscription-button"
+                    onClick={() => router.push('/manage-subscription')}
+                  >
+                    Check Plans
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="subscription-button"
+                    onClick={() => handleCheckout(plan.priceId!)}
+                  >
+                    Subscribe
+                  </button>
+                )
+              )}
+
+              {/* Button to handle subscription */}
+              {/* {plan._id !== 1 && (
                 <button
                   type="button"
                   className="subscription-button"
@@ -200,7 +234,7 @@ const Credits = () => {
                 >
                   Subscribe
                 </button>
-              )}
+              )} */}
 
               {/* Uncomment if there's a free plan */}
               {/* {plan.name === "Free" ? (

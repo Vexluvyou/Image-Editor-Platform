@@ -44,6 +44,7 @@ const SignInPage = () => {
         localStorage.setItem(AppKey.accessToken, response.accessToken);
         localStorage.setItem(AppKey.refreshToken, response.refreshToken);
         localStorage.setItem(AppKey.username, response.username);
+        localStorage.setItem(AppKey.email, response.email);
         // showSnackbar({ tcype: 'success', message: 'Successfully logged in!' });
         router.push("/");
       } else {

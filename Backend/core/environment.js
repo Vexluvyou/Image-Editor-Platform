@@ -17,7 +17,8 @@ const MyEnvironment = {
     dialect: 'mysql',   
   },
 
-  Jwt_Secret:process.env.jwt || 'da5c1746ffcd268f43be31aa5379b9da03e3aa91f0069ae3afa07b11543e6fee'
+  Jwt_Secret:process.env.jwt || 'da5c1746ffcd268f43be31aa5379b9da03e3aa91f0069ae3afa07b11543e6fee',
+  PaddleKey:process.env.jwt || 'pdl_sdbx_apikey_01jv1w5sz1txhgag2z4cxwt1xn_QethEDb0znaeeKxZd35nk6_AiQ'
 
   
 };

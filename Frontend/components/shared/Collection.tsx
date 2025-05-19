@@ -40,6 +40,7 @@ export const Collection = ({
 
   const getImages = async () => {
     const res = await http.get(`image`);
+    
     setDatasource(res);
     setTotalPage(res.length);
   }
@@ -81,6 +82,7 @@ export const Collection = ({
             <>
               <CardMedia 
                 component="img"
+                // key={index}
                 sx={{
                   width: 200,
                   height: '100%',
@@ -91,6 +93,7 @@ export const Collection = ({
                 }}
                 image={
                   image.images
+                  
                 }
                 // alt={room?.place?.name}
               />

@@ -9,6 +9,7 @@ import { AppKey } from "@/lib/services/key";
 
 import Image from "next/image";
 import Link from "next/link";
+// import router from "next/router";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -27,8 +28,18 @@ const Sidebar = () => {
     localStorage.removeItem(AppKey.refreshToken);
     localStorage.removeItem(AppKey.userId);
     localStorage.removeItem(AppKey.username);
+    localStorage.removeItem(AppKey.email);
+
+    // Make Confirm Logout
+    // const confirmLogout = window.confirm("Are you sure you want to logout?");
+    // if (confirmLogout) {
+    //   localStorage.clear(); // or remove specific keys like AppKey.userId, etc.
+    //   router.push("/sign-in");
+    // }
+
     window.location.href = "/";
   };
+
 
   return (
     <aside className="sidebar">

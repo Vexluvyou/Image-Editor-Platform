@@ -28,6 +28,7 @@ const MobileNav = () => {
     localStorage.removeItem(AppKey.refreshToken);
     localStorage.removeItem(AppKey.userId);
     localStorage.removeItem(AppKey.username);
+    localStorage.removeItem(AppKey.email);
     window.location.href = "/";
   };
 

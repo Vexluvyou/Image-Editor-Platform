@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 const SignUpPage = () => {
-    
+
     const router = useRouter();
     const httpClient = new HttpClient();
     // const openDialog = () => setDialogOpen(true);
@@ -41,6 +41,7 @@ const SignUpPage = () => {
                 localStorage.setItem(AppKey.accessToken, response.accessToken);
                 localStorage.setItem(AppKey.refreshToken, response.refreshToken);
                 localStorage.setItem(AppKey.username, response.username);
+                localStorage.setItem(AppKey.email, response.email);
                 // showSnackbar({ tcype: 'success', message: 'Successfully logged in!' });
                 router.push("/");
 
@@ -63,7 +64,7 @@ const SignUpPage = () => {
     return (
         <>
             <div className="card-container">
-                
+
                 {/* Logo */}
                 <div>
                     <Link href="/">
@@ -169,7 +170,7 @@ const SignUpPage = () => {
                     {/* No account / SignIn */}
                     <p className="signup-route">
                         No account? <a href="/sign-in" className="font-medium text-indigo-600 hover:text-indigo-500">Sign In</a>
-                        
+
                     </p>
 
                 </div>

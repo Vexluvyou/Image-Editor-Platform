@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../MyDbContext.js'; 
+import sequelize from '../../MyDbContext.js';
 import { v4 as uuidv4 } from 'uuid';
 
-const Image  = sequelize.define(
+const Image = sequelize.define(
   'Image',
   {
     id: {
@@ -14,10 +14,13 @@ const Image  = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    
   }
 );
 
 export default Image;
+
+
 
 // import { DataTypes } from 'sequelize';
 // import sequelize from '../../MyDbContext.js'; 

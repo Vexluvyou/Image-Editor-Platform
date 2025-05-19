@@ -1,10 +1,10 @@
 import IRepository from '../../core/repository.js';
-import Example from './model.js';
+import Payment from './model.js';
 
-export class IExampleRepository extends IRepository {
+export class IPaymentRepository extends IRepository {
   constructor() {
-    super(Example); 
+    super(Payment); 
   }
 }
 
-export default new IExampleRepository();
+export default new IPaymentRepository();

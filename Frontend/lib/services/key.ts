@@ -3,4 +3,5 @@ export const AppKey = {
   accessToken: 'accessToken',
   refreshToken: 'refreshToken',
   username: 'username',
+  email: 'email',
 }

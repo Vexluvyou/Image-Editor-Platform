@@ -24,6 +24,7 @@ class AuthenticationController {
         accessToken: token,
         refreshToken: token,
         username: newUser.name, 
+        email: newUser.email, 
       });
     } catch (error) {
       res.status(500).json({ message: 'Something went wrong', error: error.message });
@@ -51,6 +52,7 @@ class AuthenticationController {
         accessToken: token,
         refreshToken: token,
         username: user.name, 
+        email: user.email, 
       });
     } catch (error) {
       console.error(error);
